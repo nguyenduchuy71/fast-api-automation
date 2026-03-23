@@ -121,3 +121,59 @@ venv/Scripts/pip install "greenlet==3.1.1" --force-reinstall
 ### New UI page
 1. Add route returning `HTMLResponse` in `app/routers/frontend.py`
 2. Add browser tests to `tests/test_browser_playwright.py`
+
+
+GSD Best Practices                                                                                                                                                                                                
+  Project Setup                                                                                                                                                                                             
+  - Run /gsd:map-codebase before /gsd:new-project on existing codebases — gives Claude deep context for better planning                                                                                  
+  - Choose YOLO mode for solo work, Interactive mode when you want to review each decision
+
+  Planning Cycle
+
+  - Always /clear between major phases to avoid context pollution
+  - Use /gsd:discuss-phase N before planning when you have a specific vision — don't skip it
+  - Run /gsd:list-phase-assumptions N to catch misalignments before Claude writes the whole plan
+  - Pass --prd path/to/file.md to /gsd:plan-phase if you already have written acceptance criteria
+
+  Execution
+
+  - Let /gsd:execute-phase run fully — it updates REQUIREMENTS.md, ROADMAP.md, and STATE.md automatically
+  - Use --wave N to re-run a single failed wave rather than the whole phase
+
+  Context Management
+
+  /gsd:new-project   → /clear
+  /gsd:plan-phase N  → /clear
+  /gsd:execute-phase N
+  The /clear between steps is intentional — it prevents accumulated context from degrading output quality.
+
+  Staying on Track
+
+  - /gsd:progress is your daily driver — run it first every session instead of /gsd:resume-work
+  - Capture distractions immediately: /gsd:add-todo keeps you moving without losing the idea
+  - Use /gsd:insert-phase for urgent unplanned work — never hack a phase mid-execution
+
+  PR / Shipping
+
+  - Use /gsd:pr-branch before creating PRs — strips .planning/ commits so reviewers see only code
+  - Run /gsd:audit-uat before /gsd:complete-milestone to catch untested items
+
+  Model Profiles
+
+  ┌──────────┬──────────────────────────────────────┐
+  │ Profile  │             When to use              │
+  ├──────────┼──────────────────────────────────────┤
+  │ quality  │ Complex architecture phases          │
+  ├──────────┼──────────────────────────────────────┤
+  │ balanced │ Default — good cost/quality tradeoff │
+  ├──────────┼──────────────────────────────────────┤
+  │ budget   │ Mechanical tasks, simple CRUD, docs  │
+  └──────────┴──────────────────────────────────────┘
+
+  Switch with: /gsd:set-profile budget
+
+  Anti-Patterns to Avoid
+
+  - Don't skip /clear — stale context causes plan drift
+  - Don't run /gsd:execute-phase without a PLAN.md — use /gsd:quick for unplanned work instead
+  - Don't accumulate phases — run /gsd:cleanup after milestones or .planning/phases/ grows unwieldy
