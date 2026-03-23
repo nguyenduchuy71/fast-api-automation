@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pip --version)",
+      "Bash(pip install:*)",
+      "Bash(python -m playwright install chromium)",
+      "Bash(python:*)",
+      "Bash(C:/Project/venv/Scripts/pip install:*)",
+      "Bash(C:/Project/venv/Scripts/python -c \"from playwright.sync_api import sync_playwright; print\\('playwright ok'\\)\")",
+      "Bash(venv/Scripts/python -m pytest tests/ -v 2>&1)",
+      "Bash(C:/Project/venv/Scripts/python -m playwright install chromium)",
+      "Bash(C:/Project/venv/Scripts/playwright.exe install:*)",
+      "Bash(venv/Scripts/python -m pytest tests/test_browser_playwright.py -v)",
+      "Read(//c/Users/wtfom/.claude/**)",
+      "Bash(venv/Scripts/python -m pytest tests/ -v)",
+      "Bash(venv/Scripts/python -m pytest tests/test_browser_playwright.py --headed --slowmo=400 -v)"
+    ]
+  }
+}
